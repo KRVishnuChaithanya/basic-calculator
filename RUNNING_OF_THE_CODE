@@ -1,0 +1,71 @@
+ 1. Prerequisites
+Before running the code, make sure you have:
+
+Python installed
+
+Check with:
+
+python --version
+or
+
+py --version
+(on Windows).
+
+If not installed, download from python.org.
+
+NumPy installed (since we used it for matrices)
+Install via:
+
+pip install numpy
+Tkinter → It comes pre-installed with Python on Windows.
+
+If missing:
+
+pip install tk
+🔹 2. Running in VS Code
+Open VS Code.
+
+Create a new file → save as calculator.py.
+
+Copy-paste the full calculator code.
+
+Make sure Python extension is installed in VS Code.
+(You’ll see the Python version at the bottom-right corner).
+
+Run it:
+
+Press F5 (Run with Debugger) OR
+
+Open terminal inside VS Code and run:
+
+python calculator.py
+A GUI window (your calculator) will pop up. 🎉
+
+🔹 3. Running in Command Prompt (CMD)
+Open Command Prompt (Win + R → type cmd → Enter).
+
+Navigate to the folder where calculator.py is saved.
+Example:
+
+cd Desktop\Projects
+Run the program:
+
+python calculator.py
+OR (sometimes Windows uses py):
+
+py calculator.py
+Again, a GUI window will pop up with your calculator.
+
+🔹 4. Troubleshooting
+If CMD says python is not recognized:
+
+Try py calculator.py.
+
+Or add Python to PATH during installation.
+
+If NumPy is missing:
+
+pip install numpy
+If Tkinter errors:
+
+pip install tk
