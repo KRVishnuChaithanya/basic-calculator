@@ -1,0 +1,160 @@
+TITLE:
+Basic calulator
+FEATURES:
+1. Project Overview  
+This is a Python calculator built with Tkinter. It offers more features than a regular calculator because:
+
+It can perform basic arithmetic (addition, subtraction, multiplication, division).
+
+It includes scientific functions (like square root, sine, cosine, logarithm, factorial) using Python’s math module.
+
+It has memory functions (M+, M-, MR, MC) just like a physical calculator.
+
+It keeps a history of calculations.
+
+It allows users to toggle between light and dark themes.
+
+It supports keyboard input (typing numbers, operators, pressing Enter, Backspace, Delete).
+
+Additionally, we added matrix operations (addition and multiplication) using NumPy.
+
+This makes it both a scientific and matrix calculator with an appealing GUI.
+
+2. Main Modules Used  
+tkinter → Python’s standard GUI library.  
+
+math → provides mathematical functions (sine, cosine, logarithm, square root, etc.).  
+
+numpy → offers strong support for matrices and arrays.  
+
+tkinter.messagebox → displays error messages (like "Division by zero").  
+
+3. Code Structure  
+The program is organized into logical sections:
+
+(a) Global Memory  
+memory = 0  
+This is used to store numbers during memory operations (M+, M-, etc.).
+
+(b) Expression Evaluation  
+def evaluate_expression(event=None):  
+    try:  
+        expression = entry.get()  
+        allowed = {"__builtins__": None}  
+        allowed.update(math.__dict__)  
+        allowed.update({"np": np, "matrix": np.array})  
+        result = eval(expression, allowed)  
+entry.get() → retrieves the text entered in the input box.  
+
+eval(expression, allowed) → safely evaluates the expression, allowing only functions from math and numpy.  
+
+Example:  
+
+If you type 2 + 3 * 4, it evaluates to 14.  
+
+If you type np.add(matrix([[1, 2]]), matrix([[3, 4]])), it evaluates with NumPy.  
+
+If errors happen, messagebox.showerror() shows a warning.  
+
+(c) Entry Operations  
+Insert text: adds numbers or operators to the entry field.  
+
+Clear Entry (C): clears the input box.  
+
+Backspace (⌫): removes the last character.  
+
+History box: keeps a list of previous calculations.  
+
+(d) Memory Functions  
+M+ → Adds the number in the entry to memory.  
+
+M- → Subtracts the number from memory.  
+
+MR → Recalls the memory value into the entry.  
+
+MC → Clears memory.  
+
+These functions mimic those of physical calculators.  
+
+(e) Theme Toggle  
+def toggle_theme():  
+    current_bg = root.cget("bg")  
+    if current_bg == "#1e1e1e":  # Dark mode  
+        root.config(bg="white")   # Switch to light mode  
+        ...  
+    else:  
+        root.config(bg="#1e1e1e") # Switch back to dark mode  
+This allows the user to switch between dark mode and light mode.  
+
+(f) Keyboard Support  
+root.bind("<Key>", key_input)  
+This captures keystrokes.  
+
+Example: If you press +, it inserts +.  
+
+If you press Enter, it calculates the result.  
+
+If you press Backspace, it removes the last digit.  
+
+This makes the calculator easier to use.  
+
+(g) GUI Setup  
+Main Window:  
+
+root = tk.Tk()  
+root.title("Advanced Python Calculator")  
+root.geometry("1000x550")  
+Entry Field: input box where the user types or clicks buttons.  
+
+Buttons: created in a loop with labels (1, 2, +, =, etc.). Each button connects to a function.  
+
+History Listbox: displays past calculations.  
+
+(h) Matrix Support  
+We added two special buttons:  
+
+MatAdd → inserts np.add(matrix([[ ]]), matrix([[ ]]))  
+
+MatMul → inserts np.matmul(matrix([[ ]]), matrix([[ ]]))  
+
+Example:  
+
+np.add(matrix([[1, 2], [3, 4]]), matrix([[5, 6], [7, 8]]))  
+# Output: [[ 6  8]  
+#          [10 12]]  
+np.matmul(matrix([[1, 2], [3, 4]]), matrix([[5, 6], [7, 8]]))  
+# Output: [[19 22]  
+#          [43 50]]  
+This enables the calculator to solve linear algebra problems alongside basic arithmetic.  
+
+4. How the GUI Works  
+When you click a button:  
+
+A command (function) runs and inserts text into the entry box.  
+
+When you press =, it calls evaluate_expression().  
+
+The result is shown and stored in history.  
+
+When you type on the keyboard:  
+
+key_input() detects the entered key and inserts the correct symbol.  
+
+Enter starts the calculation.  
+
+5. Why This Project Is Useful  
+It combines basic calculator functions with scientific and matrix operations.  
+
+Using Tkinter provides good practice for designing GUIs.  
+
+You learn:  
+
+Event handling (binding, button commands).  
+
+String parsing and evaluation (safe use of eval).  
+
+Managing state (history, memory).  
+
+Switching themes.  
+
+Adding external libraries like NumPy.
